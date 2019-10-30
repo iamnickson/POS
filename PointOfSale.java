@@ -46,12 +46,12 @@ public final class PointOfSale {
     public void setItemNumber(int quantity) {
         this.itemNumber = quantity;
     }
-    
+
     public static void printInvoiceHeader() {
         System.out.println(String.format("%20s %20s %20s %20s %20s","Item Number", "|", "Item", "|", "Price(LKR)" ));
         System.out.println(String.format("%s", "----------------------------------------------------------------------------------------------------------------"));
     }
-    
+
     public void printInvoice() {
         System.out.println(String.format("%20s %20s %20s %20s %20.2f ", this.getItemNumber(), "|", this.getItemName(), "|", this.getPrice() ));
     }
@@ -63,21 +63,21 @@ public final class PointOfSale {
         itemList.add(new PointOfSale(3, "Water 1 L", 80.00));
         return itemList;
     }
-    
+
     public static void Things(int requirement[][], int cart) {
         Scanner in = new Scanner(System.in);
-        List<StoreItem1> itemList = new ArrayList<>();
-        itemList.add(new StoreItem1(1, "Bread 1 Loaf", 60.00));
-        itemList.add(new StoreItem1(2, "Sugar 1 Kg", 99.00));
-        itemList.add(new StoreItem1(3, "Water 1 L", 80.00));
-        
+        List<PointOfSale> itemList = new ArrayList<>();
+        itemList.add(new PointOfSale(1, "Bread 1 Loaf", 60.00));
+        itemList.add(new PointOfSale(2, "Sugar 1 Kg", 99.00));
+        itemList.add(new PointOfSale(3, "Water 1 L", 80.00));
+
         System.out.println("Purchased things");
-        
+
         System.out.println(String.format("%s", "-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"));
         System.out.println(String.format("%80s", "Welcome to MyShop PVT LTD"));
         System.out.println(String.format("%10s", "Purchase Invoice"));
         System.out.println(String.format("%10s", now()));
-        
+
         float totalPrice=0;
         System.out.println(String.format("%15s %15s %15s %15s %15s %15s %15s %15s %15s","Item Number", "|", "Item", "|", "Unit Price(LKR)", "|", "Quantity" , "|", "Price(LKR)"));
         System.out.println(String.format("%s", "----------------------------------------------------------------------------------------------------------------------------------------------------------"));
@@ -87,18 +87,18 @@ public final class PointOfSale {
             float price=(int) (itemList.get(id).getPrice()*qty);
             totalPrice=totalPrice+price;
             System.out.println(String.format("%15s %15s %15s %15s %15.2f %15s %15s %15s %15.2f", itemList.get(i).getItemNumber(), "|", itemList.get(i).getItemName(), "|", itemList.get(i).getPrice(), "|", qty, "|",price ));
-        } 
+        }
         System.out.println("Total price : LKR "+totalPrice+"0");
         System.out.print("Cash received : LKR ");
         float cash=in.nextFloat();
         System.out.println("Balance : LKR "+(cash-totalPrice)+"0");
     }
-    
+
     public static void print(){
-        StoreItem1.printInvoiceHeader();
-        StoreItem1.buildInvoice().forEach(StoreItem1::printInvoice);
+        PointOfSale.printInvoiceHeader();
+        PointOfSale.buildInvoice().forEach(PointOfSale::printInvoice);
     }
-    
+
     public static void main (String[] args) {
         Scanner in = new Scanner(System.in);
         System.out.println(String.format("%50s", "Welcome to MyShop PVT LTD"));
@@ -114,7 +114,7 @@ public final class PointOfSale {
         List<String> cashier = new ArrayList<>();
         cashier.add(c1);
         cashier.add(c2);
-        
+
         if((userName.equalsIgnoreCase(adminUserName)) && (password.equalsIgnoreCase(adminPassword))){
             System.out.println("Welcome admin");
             System.out.println("Do you want to add or remove cashier?");
@@ -138,7 +138,7 @@ public final class PointOfSale {
             }
             else if(get.equalsIgnoreCase("n")){
                 System.out.println("No operation done");
-            }    
+            }
         }
         else if((userName.equalsIgnoreCase(c1)) && (password.equalsIgnoreCase(c1))){
             System.out.println("Welcome Cashier1");
@@ -153,7 +153,7 @@ public final class PointOfSale {
                 System.out.println("Select the Quantity");
                 requirement[1][i]=in.nextInt();
             }
-            Things(requirement, cart);   
+            Things(requirement, cart);
         }
         else if((userName.equalsIgnoreCase(c2)) && (password.equalsIgnoreCase(c2))){
             System.out.println("Welcome Cashier2");
